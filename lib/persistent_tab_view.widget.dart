@@ -46,9 +46,9 @@ class PersistentTabView extends PersistentTabViewBase {
             "screens and items length should be same. If you are using the onPressed callback function of 'PersistentBottomNavBarItem', enter a dummy screen like Container() in its place in the screens"),
         assert(items!.length >= 2 && items.length <= 6,
             "NavBar should have at least 2 or maximum 6 items (Except for styles 15-18)"),
-        assert( 
-        handleAndroidBackButtonPress && onWillPop == null ||
-        !handleAndroidBackButtonPress && onWillPop != null,
+        assert(
+            handleAndroidBackButtonPress && onWillPop == null ||
+                !handleAndroidBackButtonPress && onWillPop != null,
             "If you declare the onWillPop function, you will have to handle the back function functionality yourself as your onWillPop function will override the default function."),
         super(
           key: key,
@@ -107,8 +107,8 @@ class PersistentTabView extends PersistentTabViewBase {
   })  : assert(itemCount == screens.length,
             "screens and items length should be same. If you are using the onPressed callback function of 'PersistentBottomNavBarItem', enter a dummy screen like Container() in its place in the screens"),
         assert(
-        handleAndroidBackButtonPress && onWillPop == null ||
-            !handleAndroidBackButtonPress && onWillPop != null,
+            handleAndroidBackButtonPress && onWillPop == null ||
+                !handleAndroidBackButtonPress && onWillPop != null,
             "If you declare the onWillPop function, you will have to handle the back function functionality yourself as your onWillPop function will override the defualt function."),
         super(
           key: key,
@@ -584,94 +584,94 @@ class _PersistentTabViewState extends State<PersistentTabView> {
     }
   }
 
-  Widget navigationBarWidget() => PersistentTabScaffold(
-        controller: _controller,
-        itemCount:
-            widget.items == null ? widget.itemCount ?? 0 : widget.items!.length,
-        bottomScreenMargin:
-            widget.hideNavigationBar != null && widget.hideNavigationBar!
-                ? 0.0
-                : widget.bottomScreenMargin,
-        stateManagement: widget.stateManagement,
-        screenTransitionAnimation: widget.screenTransitionAnimation,
-        hideNavigationBarWhenKeyboardShows:
-            widget.hideNavigationBarWhenKeyboardShows,
+  Widget navigationBarWidget() => CupertinoPageScaffold(
         resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
-        animatePadding: _isAnimating! || _isCompleted!,
-        tabBar: PersistentBottomNavBar(
-          navBarEssentials: NavBarEssentials(
-            selectedIndex: _controller!.index,
-            previousIndex: _previousIndex,
-            padding: widget.padding,
-            selectedScreenBuildContext: _contextList[_controller!.index],
-            itemAnimationProperties: widget.itemAnimationProperties,
-            items: widget.items,
-            backgroundColor: widget.backgroundColor,
-            navBarHeight: _navBarHeight,
-            popScreensOnTapOfSelectedTab:
-                widget.popAllScreensOnTapOfSelectedTab ?? true,
-            popAllScreensOnTapAnyTabs:
-                widget.popAllScreensOnTapAnyTabs ?? false,
-            onItemSelected: widget.onItemSelected != null
-                ? (final index) {
-                    if (_controller!.index != _previousIndex) {
-                      _previousIndex = _controller!.index;
-                    }
-                    if (((widget.popAllScreensOnTapOfSelectedTab ?? true) &&
-                            _previousIndex == index) ||
-                        (widget.popAllScreensOnTapAnyTabs ?? false)) {
-                      popAllScreens();
-                    }
-                    _controller!.index = index;
-                    widget.onItemSelected!(index);
-                  }
-                : (final index) {
-                    if (_controller!.index != _previousIndex) {
-                      _previousIndex = _controller!.index;
-                    }
-                    if (((widget.popAllScreensOnTapOfSelectedTab ?? true) &&
-                            _previousIndex == index) ||
-                        (widget.popAllScreensOnTapAnyTabs ?? false)) {
-                      popAllScreens();
-                    }
-                    // popAllScreens();
-                    _controller!.index = index;
-                  },
-          ),
-          isCustomWidget: widget.isCustomWidget,
-          navBarDecoration: widget.decoration,
-          margin: widget.margin,
-          confineToSafeArea: widget.confineInSafeArea,
-          hideNavigationBar: widget.hideNavigationBar,
-          navBarStyle: widget.navBarStyle,
-          neumorphicProperties: widget.neumorphicProperties,
-          customNavBarWidget: widget.customWidget,
-          onAnimationComplete: (final isAnimating, final isCompleted) {
-            if (_isAnimating != isAnimating) {
-              setState(() {
-                _isAnimating = isAnimating;
-              });
-            }
-            if (_isCompleted != isCompleted) {
-              setState(() {
-                _isCompleted = isCompleted;
-              });
-            }
-          },
-        ),
-        tabBuilder: (final context, final index) => SafeArea(
-          top: false,
-          right: false,
-          left: false,
-          bottom: (widget.items != null &&
-                      widget.items![_controller!.index].opacity < 1.0) ||
-                  (widget.hideNavigationBar != null && _isCompleted!)
-              ? false
-              : widget.margin.bottom > 0
-                  ? false
-                  : widget.confineInSafeArea,
-          child: _buildScreen(index),
-        ),
+        backgroundColor: Colors.transparent,
+        child: PersistentTabScaffold(
+            controller: _controller,
+            itemCount: widget.items == null
+                ? widget.itemCount ?? 0
+                : widget.items!.length,
+            bottomScreenMargin:
+                widget.hideNavigationBar != null && widget.hideNavigationBar!
+                    ? 0.0
+                    : widget.bottomScreenMargin,
+            stateManagement: widget.stateManagement,
+            screenTransitionAnimation: widget.screenTransitionAnimation,
+            hideNavigationBarWhenKeyboardShows:
+                widget.hideNavigationBarWhenKeyboardShows,
+            resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset,
+            animatePadding: _isAnimating! || _isCompleted!,
+            tabBar: PersistentBottomNavBar(
+              navBarEssentials: NavBarEssentials(
+                selectedIndex: _controller!.index,
+                previousIndex: _previousIndex,
+                padding: widget.padding,
+                selectedScreenBuildContext: _contextList[_controller!.index],
+                itemAnimationProperties: widget.itemAnimationProperties,
+                items: widget.items,
+                backgroundColor: widget.backgroundColor,
+                navBarHeight: _navBarHeight,
+                popScreensOnTapOfSelectedTab:
+                    widget.popAllScreensOnTapOfSelectedTab ?? true,
+                onItemSelected: widget.onItemSelected != null
+                    ? (final index) {
+                        if (_controller!.index != _previousIndex) {
+                          _previousIndex = _controller!.index;
+                        }
+                        if ((widget.popAllScreensOnTapOfSelectedTab ?? true) &&
+                            _previousIndex == index) {
+                          popAllScreens();
+                        }
+                        _controller!.index = index;
+                        widget.onItemSelected!(index);
+                      }
+                    : (final index) {
+                        if (_controller!.index != _previousIndex) {
+                          _previousIndex = _controller!.index;
+                        }
+                        if ((widget.popAllScreensOnTapOfSelectedTab ?? true) &&
+                            _previousIndex == index) {
+                          popAllScreens();
+                        }
+                        _controller!.index = index;
+                      },
+              ),
+              isCustomWidget: widget.isCustomWidget,
+              navBarDecoration: widget.decoration,
+              margin: widget.margin,
+              confineToSafeArea: widget.confineInSafeArea,
+              hideNavigationBar: widget.hideNavigationBar,
+              navBarStyle: widget.navBarStyle,
+              neumorphicProperties: widget.neumorphicProperties,
+              customNavBarWidget: widget.customWidget,
+              onAnimationComplete: (final isAnimating, final isCompleted) {
+                if (_isAnimating != isAnimating) {
+                  setState(() {
+                    _isAnimating = isAnimating;
+                  });
+                }
+                if (_isCompleted != isCompleted) {
+                  setState(() {
+                    _isCompleted = isCompleted;
+                  });
+                }
+              },
+            ),
+            tabBuilder: (final context, final index) => SafeArea(
+                  top: false,
+                  right: false,
+                  left: false,
+                  bottom: (widget.items != null &&
+                              widget.items![_controller!.index].opacity <
+                                  1.0) ||
+                          (widget.hideNavigationBar != null && _isCompleted!)
+                      ? false
+                      : widget.margin.bottom > 0
+                          ? false
+                          : widget.confineInSafeArea,
+                  child: _buildScreen(index),
+                )),
       );
 
   @override
@@ -695,7 +695,6 @@ class _PersistentTabViewState extends State<PersistentTabView> {
                 as Future<bool> Function()?
             : widget.handleAndroidBackButtonPress && widget.onWillPop != null
                 ? () async {
-
                     if (_controller!.index == 0 &&
                         !Navigator.canPop(_contextList.first!)) {
                       return widget.onWillPop!(_contextList.first);
