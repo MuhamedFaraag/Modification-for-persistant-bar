@@ -128,17 +128,27 @@ class PersistentBottomNavBar extends StatelessWidget {
                                       (hideNavigationBar ?? false)
                                   ? false
                                   : confineToSafeArea ?? true,
-                              child: Container(
-                                decoration:ShapeDecoration(
-                                    shape:MyBorderShape(),
-                                    color: Colors.white,
-                                    shadows: [
-                                      BoxShadow(
-                                          color: Colors.black38,
-                                          blurRadius: 8.0,
-                                          offset: Offset(1, 1),),
-                                    ]
+                              child: DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(color: Colors.green,width: 2),
+                                  boxShadow:const [
+                                        BoxShadow(
+                                            color: Colors.black38,
+                                            blurRadius: 8,
+                                            offset: Offset(1, 1),),
+                                      ]
                                 ),
+                                // ShapeDecoration(
+                                //   //  shape:MyBorderShape(),
+                                //     color: Colors.white,
+                                //     shadows: [
+                                //       BoxShadow(
+                                //           color: Colors.black38,
+                                //           blurRadius: 8.0,
+                                //           offset: Offset(1, 1),),
+                                //     ]
+                                // ),
                                 child:getNavBarStyle(),
                               )
                               //getNavBarStyle(),
@@ -341,37 +351,37 @@ class PersistentBottomNavBar extends StatelessWidget {
     }
   }
 }
-class MyBorderShape extends ShapeBorder {
-  MyBorderShape();
-
-  @override
-  EdgeInsetsGeometry get dimensions => EdgeInsets.zero;
-
-  @override
-  Path getInnerPath(Rect rect, {TextDirection? textDirection}) => getOuterPath(rect);
-
-  double holeSize = 70;
-
-  @override
-  Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
-
-    return Path.combine(
-      PathOperation.difference,
-      Path()
-        ..addRRect(RRect.fromRectAndRadius(rect, Radius.circular(0)))
-        ..close(),
-      Path()
-        ..addOval(Rect.fromCenter(
-            center: rect.center.translate(0, -rect.height / 2),
-            height: holeSize,
-            width: holeSize))
-        ..close(),
-    );
-  }
-
-  @override
-  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {}
-
-  @override
-  ShapeBorder scale(double t) => this;
-}
+// class MyBorderShape extends ShapeBorder {
+//   MyBorderShape();
+//
+//   @override
+//   EdgeInsetsGeometry get dimensions => EdgeInsets.zero;
+//
+//   @override
+//   Path getInnerPath(Rect rect, {TextDirection? textDirection}) => getOuterPath(rect);
+//
+//   double holeSize = 70;
+//
+//   @override
+//   Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
+//
+//     return Path.combine(
+//       PathOperation.difference,
+//       Path()
+//         ..addRRect(RRect.fromRectAndRadius(rect, Radius.circular(0)))
+//         ..close(),
+//       Path()
+//         ..addOval(Rect.fromCenter(
+//             center: rect.center.translate(0, -rect.height / 2),
+//             height: holeSize,
+//             width: holeSize))
+//         ..close(),
+//     );
+//   }
+//
+//   @override
+//   void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {}
+//
+//   @override
+//   ShapeBorder scale(double t) => this;
+// }
