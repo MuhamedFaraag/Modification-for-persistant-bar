@@ -96,20 +96,20 @@ class PersistentBottomNavBar extends StatelessWidget {
                                     (hideNavigationBar ?? false)
                                 ? false
                                 : confineToSafeArea ?? true,
-                            child: Text('FFFFFFFF1')
-                            // DecoratedBox(
-                            //   decoration:
-                            //       PersistentBottomNavigationBarUtilFunctions
-                            //           .getNavBarDecoration(
-                            //     decoration: navBarDecoration,
-                            //     color: navBarEssentials!.backgroundColor,
-                            //     opacity: navBarEssentials!
-                            //         .items![navBarEssentials!.selectedIndex!]
-                            //         .opacity,
-                            //   ),
-                            //   child: getNavBarStyle(),
-                            // ),
+                            child: DecoratedBox(
+                              decoration:
+                                  PersistentBottomNavigationBarUtilFunctions
+                                      .getNavBarDecoration(
+                                decoration: navBarDecoration,
+                                color: navBarEssentials!.backgroundColor,
+                                opacity: navBarEssentials!
+                                    .items![navBarEssentials!.selectedIndex!]
+                                    .opacity,
+                              ),
+                              child: getNavBarStyle(),
+                            ),
                           )
+
                         : DecoratedBox(
                             decoration:
                                 PersistentBottomNavigationBarUtilFunctions
@@ -121,38 +121,40 @@ class PersistentBottomNavBar extends StatelessWidget {
                                   .opacity,
                             ),
                             child: SafeArea(
-                              top: false,
-                              right: false,
-                              left: false,
-                              bottom: navBarEssentials!.navBarHeight == 0.0 ||
-                                      (hideNavigationBar ?? false)
-                                  ? false
-                                  : confineToSafeArea ?? true,
-                              child: DecoratedBox(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(color: Colors.green,width: 2),
-                                  boxShadow:const [
+                                top: false,
+                                right: false,
+                                left: false,
+                                bottom: navBarEssentials!.navBarHeight == 0.0 ||
+                                        (hideNavigationBar ?? false)
+                                    ? false
+                                    : confineToSafeArea ?? true,
+                                /// Here Is Modication
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      border: Border.all(
+                                          color: Colors.green, width: 2),
+                                      boxShadow: const [
                                         BoxShadow(
-                                            color: Colors.black38,
-                                            blurRadius: 8,
-                                            offset: Offset(1, 1),),
-                                      ]
+                                          color: Colors.black38,
+                                          blurRadius: 8,
+                                          offset: Offset(1, 1),
+                                        ),
+                                      ]),
+                                  // ShapeDecoration(
+                                  //   //  shape:MyBorderShape(),
+                                  //     color: Colors.white,
+                                  //     shadows: [
+                                  //       BoxShadow(
+                                  //           color: Colors.black38,
+                                  //           blurRadius: 8.0,
+                                  //           offset: Offset(1, 1),),
+                                  //     ]
+                                  // ),
+                                  child: getNavBarStyle(),
+                                )
+                                //getNavBarStyle(),
                                 ),
-                                // ShapeDecoration(
-                                //   //  shape:MyBorderShape(),
-                                //     color: Colors.white,
-                                //     shadows: [
-                                //       BoxShadow(
-                                //           color: Colors.black38,
-                                //           blurRadius: 8.0,
-                                //           offset: Offset(1, 1),),
-                                //     ]
-                                // ),
-                                child:getNavBarStyle(),
-                              )
-                              //getNavBarStyle(),
-                            ),
                           )
                     : DecoratedBox(
                         decoration: PersistentBottomNavigationBarUtilFunctions
