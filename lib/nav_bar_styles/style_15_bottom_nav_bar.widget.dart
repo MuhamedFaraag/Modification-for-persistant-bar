@@ -87,88 +87,23 @@ class BottomNavStyle15 extends StatelessWidget {
           final bool isSelected, final double? height) =>
       navBarEssentials!.navBarHeight == 0
           ? const SizedBox.shrink()
-          : Padding(
-              padding: EdgeInsets.only(
-                  top: 0,
-                  bottom: 3),
-              child: Stack(
-                children: <Widget>[
-                  Transform.translate(
-                    offset: const Offset(0, -10),
-                    child: Center(
-                      child: Container(
-                        width: 120,
-                        height: height,
-                      //  margin: const EdgeInsets.zero,
-                        decoration:
-                        BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color(0xff70cc95),
-                          border:
-                              Border.all(color: Colors.transparent, width: 5),
-                          boxShadow: navBarDecoration!.boxShadow,
-                        ),
-                        child: Container(
-                          alignment: Alignment.center,
-                          height: height,
-                          child: ListView(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            scrollDirection: Axis.horizontal,
-                            children: <Widget>[
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Expanded(
-                                    child: IconTheme(
-                                      data: IconThemeData(
-                                          size: item.iconSize,
-                                          color: item.activeColorSecondary ??
-                                              item.activeColorPrimary),
-                                      child: isSelected
-                                          ? item.icon
-                                          : item.inactiveIcon ?? item.icon,
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  if (item.title == null)
-                    const SizedBox.shrink()
-                  else
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 0),
-                      child: Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Material(
-                          type: MaterialType.transparency,
-                          child: FittedBox(
-                              child: Text(
-                            item.title!,
-                            style: item.textStyle != null
-                                ? (item.textStyle!.apply(
-                                    color: isSelected
-                                        ? (item.activeColorSecondary ??
-                                            item.activeColorPrimary)
-                                        : item.inactiveColorPrimary))
-                                : TextStyle(
-                                    color: isSelected
-                                        ? (item.activeColorPrimary)
-                                        : item.inactiveColorPrimary,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12),
-                          )),
-                        ),
-                      ),
-                    )
-                ],
-              ),
-            );
+          :  Container(
+        width: 150,
+        height: height,
+        color: Colors.transparent,
+
+        child:  Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.transparent,
+            border: Border.all(color: Colors.transparent, width: 5),
+            image: DecorationImage(
+                image: AssetImage("assets/icons/more_icons/center.png"),),
+            boxShadow: navBarDecoration!.boxShadow,
+          ),
+        )
+      );
+
 
   @override
   Widget build(final BuildContext context) {

@@ -124,33 +124,20 @@ class PersistentBottomNavBar extends StatelessWidget {
                                 top: false,
                                 right: false,
                                 left: false,
-                                bottom: navBarEssentials!.navBarHeight == 0.0 ||
+                                bottom: 
+navBarEssentials!.navBarHeight == 0.0 ||
                                         (hideNavigationBar ?? false)
-                                    ? false
-                                    : confineToSafeArea ?? true,
+                                   ? false
+                                    : 
+confineToSafeArea ??
+ true,
                                 /// Here Is Modication
                                 child: DecoratedBox(
                                   decoration: BoxDecoration(
                                       color: Colors.white,
-                                      border: Border.all(
-                                          color: Colors.green, width: 2),
-                                      boxShadow: const [
-                                        BoxShadow(
-                                          color: Colors.black38,
-                                          blurRadius: 8,
-                                          offset: Offset(1, 1),
-                                        ),
-                                      ]),
-                                  // ShapeDecoration(
-                                  //   //  shape:MyBorderShape(),
-                                  //     color: Colors.white,
-                                  //     shadows: [
-                                  //       BoxShadow(
-                                  //           color: Colors.black38,
-                                  //           blurRadius: 8.0,
-                                  //           offset: Offset(1, 1),),
-                                  //     ]
-                                  // ),
+                                 
+                                      ),
+                            
                                   child: getNavBarStyle(),
                                 )
                                 //getNavBarStyle(),
