@@ -88,7 +88,7 @@ class BottomNavStyle15 extends StatelessWidget {
       navBarEssentials!.navBarHeight == 0
           ? const SizedBox.shrink()
           :  Container(
-        width: 150,
+        width: 80,
         height: height,
         color: Colors.transparent,
 
